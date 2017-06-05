@@ -25,6 +25,8 @@ class Gallery extends React.Component{
         this.setState({containerWidth: Math.floor(this._gallery.clientWidth)});
     }
     render(){
+        const { template } = this.props;
+
         let cols = this.props.cols,
             photoPreviewNodes = [],
 	    contWidth = this.state.containerWidth - (cols * (this.props.margin * 2)); 
@@ -72,7 +74,16 @@ class Gallery extends React.Component{
 		photoPreviewNodes.push(
 		    <div key={k} style={style}>
 			<a href="#" className={k} onClick={(e) => this.props.onClickPhoto(k, e)}>
-			    <img src={src} srcSet={srcset} sizes={sizes} style={{display:'block', border:0}} height={commonHeight} width={commonHeight * this.props.photos[k].aspectRatio} alt={this.props.photos[k].alt} />
+			    {template({
+                    src,
+                    srcSet: srcset,
+                    sizes,
+                    style: {display:'block', border:0},
+                    height: commonHeight,
+                    width: commonHeight * this.props.photos[k].aspectRatio,
+                    alt: this.props.photos[k].alt,
+                    index: k
+                })}
 			</a>
 		    </div>
 		);
