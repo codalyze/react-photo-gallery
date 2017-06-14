@@ -73,7 +73,7 @@ class Gallery extends React.Component{
 		style.margin = this.props.margin;
 		photoPreviewNodes.push(
 		    <div key={k} style={style}>
-			<a href="#" className={k} onClick={(e) => this.props.onClickPhoto(k, e)}>
+			<div className={k} onClick={(e) => this.props.onClickPhoto(k, e)}>
 			    {template({
                     src,
                     srcSet: srcset,
@@ -84,7 +84,7 @@ class Gallery extends React.Component{
                     alt: this.props.photos[k].alt,
                     index: k
                 })}
-			</a>
+			</div>
 		    </div>
 		);
             }
